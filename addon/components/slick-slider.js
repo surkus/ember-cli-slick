@@ -1,8 +1,12 @@
-import Ember from 'ember';
-import layout from '../templates/components/slick-slider';
+import Component from '@ember/component';
+import layout from '../templates/components/ember-cli-slick';
+import { scheduleOnce } from '@ember/runloop';
 
-export default Ember.Component.extend({
-  layout: layout,
+const responsive = [];
+
+export default Component.extend({
+  layout,
+  responsive,
   accessibility: true,
   adaptiveHeight: true,
   autoplay: false,
@@ -27,7 +31,6 @@ export default Ember.Component.extend({
   pauseOnHover: true,
   pauseOnDotsHover: false,
   respondTo: 'window',
-  responsive: [],
   rows: 1,
   slide: '',
   slidesPerRow: 1,
@@ -44,11 +47,17 @@ export default Ember.Component.extend({
   verticalSwiping: false,
   rtl: false,
 
-  _initializeSlick: Ember.on('didInsertElement', function() {
-    var _this = this;
+  slickInit() {},
+  beforeChange() {},
+  afterChange() {},
+  edge() {},
+  reInit() {},
+  setPosition() {},
+  swiped() {},
 
-    Ember.run.scheduleOnce('actions', this.$(), function() {
-      _this.sendAction('slickInit', this[0]);
+  didInsertElement() {
+    scheduleOnce('actions', () => {
+      this.slickInit(this.$()[0]);
     });
 
     return this.$().slick({
@@ -96,23 +105,23 @@ export default Ember.Component.extend({
       verticalSwiping  : this.get('verticalSwiping'),
       rtl              : this.get('rtl')
     })
-    .on('afterChange', function ($event, slick, currentSlide) {
-      _this.sendAction('afterChange', slick, currentSlide);
+    .on('afterChange', ($event, slick, currentSlide) => {
+      this.afterChange(slick, currentSlide);
     })
-    .on('beforeChange', function ($event, slick, currentSlide, nextSlide) {
-      _this.sendAction('beforeChange', slick, currentSlide, nextSlide);
+    .on('beforeChange', ($event, slick, currentSlide, nextSlide) => {
+      this.beforeChange(slick, currentSlide, nextSlide);
     })
-    .on('edge', function ($event, slick, direction) {
-      _this.sendAction('edge', slick, direction);
+    .on('edge', ($event, slick, direction) => {
+      this.edge(slick, direction);
     })
-    .on('reInit', function ($event, slick) {
-      _this.sendAction('reInit', slick);
+    .on('reInit', ($event, slick) => {
+      this.reInit(slick);
     })
-    .on('setPosition', function ($event, slick) {
-      _this.sendAction('setPosition', slick);
+    .on('setPosition', ($event, slick) => {
+      this.setPosition(slick);
     })
-    .on('swipe', function ($event, slick, direction) {
-      _this.sendAction('swiped', slick, direction);
+    .on('swipe', ($event, slick, direction) => {
+      this.swiped(slick, direction);
     });
-  })
+  }
 });

@@ -1,8 +1,17 @@
+/* eslint-env node */
 module.exports = {
-  normalizeEntityName: function() {
-  },
+  description: 'Inject slick-carousel in project',
 
-  afterInstall: function() {
-    return this.addAddonToProject('slick-carousel');
+  // locals(options) {
+  //   // Return custom template variables here.
+  //   return {
+  //     foo: options.entity.options.foo
+  //   };
+  // }
+
+  afterInstall() {
+    return this.addPackagesToProject([
+      { name: 'slick-carousel', target: '^1.8.1' }
+    ]);
   }
 };
