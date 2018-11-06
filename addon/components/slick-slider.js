@@ -50,17 +50,21 @@ export default Component.extend({
   slickInit() {},
   beforeChange() {},
   afterChange() {},
+  breakpoint() {},
   edge() {},
   reInit() {},
   setPosition() {},
   swiped() {},
+  destroy() {},
+  lazyLoaded() {},
+  lazyLoadError() {},
 
   didInsertElement() {
     scheduleOnce('actions', () => {
       this.slickInit(this.$()[0]);
     });
 
-    return this.$().slick({
+    this.$().slick({
       accessibility    : this.get('accessibility'),
       adaptiveHeight   : this.get('adaptiveHeight'),
       autoplay         : this.get('autoplay'),
@@ -111,6 +115,9 @@ export default Component.extend({
     .on('beforeChange', ($event, slick, currentSlide, nextSlide) => {
       this.beforeChange(slick, currentSlide, nextSlide);
     })
+    .on('breakpoint', ($event, slick, breakpoint) => {
+      this.breakpoint(slick, breakpoint);
+    })
     .on('edge', ($event, slick, direction) => {
       this.edge(slick, direction);
     })
@@ -121,7 +128,16 @@ export default Component.extend({
       this.setPosition(slick);
     })
     .on('swipe', ($event, slick, direction) => {
-      this.swiped(slick, direction);
+      this.swipe(slick, direction);
+    })
+    .on('destroy', ($event, slick) => {
+      this.destroy(slick);
+    })
+    .on('lazyLoaded', ($event, slick, image, imageSource) => {
+      this.lazyLoaded(slick, image, imageSource);
+    })
+    .on('lazyLoadError', ($event, slick, image, imageSource) => {
+      this.lazyLoadError(slick, image, imageSource);
     });
   }
 });

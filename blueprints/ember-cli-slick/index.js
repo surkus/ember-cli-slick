@@ -11,7 +11,7 @@ module.exports = {
 
   afterInstall() {
     return this.addPackagesToProject([
-      { name: 'slick-carousel', target: '^1.8.1' }
+      { name: 'slick-carousel', target: '~1.8.1' }
     ]);
   }
 };
