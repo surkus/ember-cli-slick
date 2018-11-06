@@ -4,7 +4,7 @@ const path = require('path');
 const fastbootTransform = require('fastboot-transform');
 
 module.exports = {
-  name: 'ember-cli-slick',
+  name: '@surkus/ember-cli-slick',
 
   included: function(app) {
     this._super.included.apply(this, arguments);
