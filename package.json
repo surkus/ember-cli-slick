@@ -14,22 +14,12 @@
     "url": "git@github.com/surkus/ember-cli-slick"
   },
   "license": "MIT",
-  "author": {
-    "name": "Surkus Engineering",
-    "email": "engineering@surkus.com",
-    "url": "https://surkus.com"
-  },
+  "author": "Surkus Engineering <engineering@surkus.com> (https://surkus.com)",
   "contributors": [
-    {
-      "name": "Sebastian Baroni"
-    },
-    {
-      "name": "Larry Sprock",
-      "email": "larry@surkus.com"
-    }
+    "Sebastian Baroni",
+    "Larry Sprock <larry@surkus.com>"
   ],
   "directories": {
-    "doc": "doc",
     "test": "tests"
   },
   "scripts": {
@@ -78,5 +68,6 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
-  }
+  },
+  "main": "index.js"
 }
