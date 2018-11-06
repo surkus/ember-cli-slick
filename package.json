@@ -1,6 +1,6 @@
 {
-  "name": "ember-cli-slick",
-  "version": "2.0.0",
+  "name": "@surkus/ember-cli-slick",
+  "version": "1.8.0",
   "description": "Slick Slider addon for Ember CLI.",
   "keywords": [
     "ember-addon",
@@ -9,9 +9,22 @@
     "carousel",
     "responsive"
   ],
-  "repository": "https://github.com/laantorchaweb/ember-cli-slick",
+  "repository": "https://github.com/surkus/ember-cli-slick",
   "license": "MIT",
-  "author": "",
+  "author": {
+    "name": "Surkus Engineering",
+    "email": "engineering@surkus.com",
+    "url": "https://surkus.com"
+  },
+  "contributors": [
+    {
+      "name": "Sebastian Baroni"
+    },
+    {
+      "name": "Larry Sprock",
+      "email": "larry@surkus.com"
+    }
+  ],
   "directories": {
     "doc": "doc",
     "test": "tests"
