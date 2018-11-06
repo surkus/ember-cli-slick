@@ -4,7 +4,7 @@
 
 This was originally written by [laantorchaweb](https://github.com/laantorchaweb/ember-cli-slick) and has since been upgraded to work with Ember CLI >= 3.4.
 
-The versioning has changed to correspond to the supported Slick Carousel version.
+The versioning has changed to correspond to the supported Slick Carousel version. Current version is 1.8.x.
 
 Surkus is a huge proponent of Ember and as such will support maintaining these addons for as long as we use them. Giving confidence to the community that these will be properly updated and maintained over time.
 
