@@ -1,1 +1,1 @@
-export { default } from 'ember-cli-slick/components/slick-slider';
+export { default } from '@surkus/ember-cli-slick/components/slick-slider';
