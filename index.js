@@ -8,22 +8,22 @@ module.exports = {
 
   included: function(app) {
     this._super.included.apply(this, arguments);
-
-    this._importJs(app);
-    this._importCss(app);
-    this._importFonts(app);
-    this._importImages(app);
-  },
-
-  _importJs(app) {
-    let libPath = path.join('node_modules', 'slick-carousel', 'slick', 'slick.js');
     let importOptions = {
       using: [{
         transformation: 'fastbootTransform'
       }]
     };
 
-    app.import(libPath, importOptions);
+    this._importJs(app, importOptions);
+    this._importCss(app);
+    this._importFonts(app);
+    this._importImages(app);
+  },
+
+  _importJs(app, importOptions) {
+    let jsPath = path.join('node_modules', 'slick-carousel', 'slick', 'slick.js');
+
+    app.import(jsPath, importOptions);
   },
 
   _importCss(app) {
@@ -39,7 +39,7 @@ module.exports = {
     const fonts = ['slick.ttf', 'slick.svg', 'slick.eot', 'slick.woff'];
 
     fonts.forEach(function(file) {
-      let libPath = path.join('node_modules', 'slick-carousel', 'slick', file);
+      let libPath = path.join('node_modules', 'slick-carousel', 'slick', 'fonts', file);
       app.import(libPath, { destDir: 'assets/fonts' })
     })
   },
