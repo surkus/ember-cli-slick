@@ -1,41 +1,54 @@
-# ember-cli-slick
+# @surkus/ember-cli-slick
 
-`ember-cli-slick` is a component that wraps the Slick Slider plugin functionality.
+`@surkus/ember-cli-slick` is a component that wraps the Slick Slider Jquery plugin functionality for use with Ember CLI.
+
+This was originally written by [laantorchaweb](https://github.com/laantorchaweb/ember-cli-slick) and has since been upgraded to work with Ember CLI >= 3.4.
+
+The versioning has changed to correspond to the supported Slick Carousel version.
+
+Surkus is a huge proponent of Ember and as such will support maintaining these addons for as long as we use them. Giving confidence to the community that these will be properly updated and maintained over time.
 
 ### Installation
 
 From inside your ember-cli project, run the following:
 
 ```bash
-ember install ember-cli-slick
-```
-
-#### Installation for ember-cli 0.1.5 - 0.2.2
-
-```bash
-ember install:addon ember-cli-slick
+ember install @surkus/ember-cli-slick
 ```
 
 ### slick-slider
 
 ```hbs
 {{#slick-slider autoplay=true arrows=false}}
-  <div class="box"> <img src="https://static2.businessinsider.com/image/4f3433986bb3f7b67a00003c/a-parasite-found-in-cats-could-be-manipulating-our-brains.jpg"> </div>
-  <div class="box"> <img src="https://static2.businessinsider.com/image/4f3433986bb3f7b67a00003c/a-parasite-found-in-cats-could-be-manipulating-our-brains.jpg"> </div>
-  <div class="box"> <img src="https://static2.businessinsider.com/image/4f3433986bb3f7b67a00003c/a-parasite-found-in-cats-could-be-manipulating-our-brains.jpg"> </div>
-  <div class="box"> <img src="https://static2.businessinsider.com/image/4f3433986bb3f7b67a00003c/a-parasite-found-in-cats-could-be-manipulating-our-brains.jpg"> </div>
+  <div class="box"> <img src="https://picsum.photos/200/300"> </div>
+  <div class="box"> <img src="https://picsum.photos/200/300"> </div>
+  <div class="box"> <img src="https://picsum.photos/200/300"> </div>
+  <div class="box"> <img src="https://picsum.photos/200/300"> </div>
 {{/slick-slider}}
 ```
 
-### The Slick events will be send from the component to your controller or route
-(the swipe event will send a `swiped` in order to prevent naming issues)
+### Callbacks
+
+```js
+slickInit => init //Changed for the purpose of component
+beforeChange
+afterChange
+breakpoint
+edge
+reInit
+setPosition
+swipe
+destroy
+lazyLoaded
+lazyLoadError
+```
 
 ```hbs
-{{#slick-slider	afterChange='afterChange'}}
-  <div class="box"> <img src="https://static2.businessinsider.com/image/4f3433986bb3f7b67a00003c/a-parasite-found-in-cats-could-be-manipulating-our-brains.jpg"> </div>
-  <div class="box"> <img src="https://static2.businessinsider.com/image/4f3433986bb3f7b67a00003c/a-parasite-found-in-cats-could-be-manipulating-our-brains.jpg"> </div>
-  <div class="box"> <img src="https://static2.businessinsider.com/image/4f3433986bb3f7b67a00003c/a-parasite-found-in-cats-could-be-manipulating-our-brains.jpg"> </div>
-  <div class="box"> <img src="https://static2.businessinsider.com/image/4f3433986bb3f7b67a00003c/a-parasite-found-in-cats-could-be-manipulating-our-brains.jpg"> </div>
+{{#slick-slider	afterChange=(action 'someAfterChange')}}
+  <div class="box"> <img src="https://picsum.photos/200/300"> </div>
+  <div class="box"> <img src="https://picsum.photos/200/300"> </div>
+  <div class="box"> <img src="https://picsum.photos/200/300"> </div>
+  <div class="box"> <img src="https://picsum.photos/200/300"> </div>
 {{/slick-slider}}
 ```
 
@@ -43,11 +56,11 @@ ember install:addon ember-cli-slick
 A `slickInit` event may be bound from your template. This event is triggered after Ember's internal didInsertElement with a DOM reference to the newly created widget allowing direct manipulation of the DOM elements after creation.
 
 ```hbs
-{{#slick-slider	slickInit="someInitAction"}}
-  <div class="box"> <img src="https://static2.businessinsider.com/image/4f3433986bb3f7b67a00003c/a-parasite-found-in-cats-could-be-manipulating-our-brains.jpg"> </div>
-  <div class="box"> <img src="https://static2.businessinsider.com/image/4f3433986bb3f7b67a00003c/a-parasite-found-in-cats-could-be-manipulating-our-brains.jpg"> </div>
-  <div class="box"> <img src="https://static2.businessinsider.com/image/4f3433986bb3f7b67a00003c/a-parasite-found-in-cats-could-be-manipulating-our-brains.jpg"> </div>
-  <div class="box"> <img src="https://static2.businessinsider.com/image/4f3433986bb3f7b67a00003c/a-parasite-found-in-cats-could-be-manipulating-our-brains.jpg"> </div>
+{{#slick-slider	slickInit=(action 'someInitAction')}}
+  <div class="box"> <img src="https://picsum.photos/200/300"> </div>
+  <div class="box"> <img src="https://picsum.photos/200/300"> </div>
+  <div class="box"> <img src="https://picsum.photos/200/300"> </div>
+  <div class="box"> <img src="https://picsum.photos/200/300"> </div>
 {{/slick-slider}}
 ```
 
@@ -55,46 +68,48 @@ A `slickInit` event may be bound from your template. This event is triggered aft
 
 ```hbs
 {{#slick-slider	responsive=breakpoints}}
-  <div class="box"> <img src="https://static2.businessinsider.com/image/4f3433986bb3f7b67a00003c/a-parasite-found-in-cats-could-be-manipulating-our-brains.jpg"> </div>
-  <div class="box"> <img src="https://static2.businessinsider.com/image/4f3433986bb3f7b67a00003c/a-parasite-found-in-cats-could-be-manipulating-our-brains.jpg"> </div>
-  <div class="box"> <img src="https://static2.businessinsider.com/image/4f3433986bb3f7b67a00003c/a-parasite-found-in-cats-could-be-manipulating-our-brains.jpg"> </div>
-  <div class="box"> <img src="https://static2.businessinsider.com/image/4f3433986bb3f7b67a00003c/a-parasite-found-in-cats-could-be-manipulating-our-brains.jpg"> </div>
+  <div class="box"> <img src="https://picsum.photos/200/300"> </div>
+  <div class="box"> <img src="https://picsum.photos/200/300"> </div>
+  <div class="box"> <img src="https://picsum.photos/200/300"> </div>
+  <div class="box"> <img src="https://picsum.photos/200/300"> </div>
 {{/slick-slider}}
 ```
 
-```javascript
-import Ember from 'ember';
+```js
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
-	breakpoints: [
-		{
-		  'breakpoint': 1024,
-		  'settings': {
-		    'slidesToShow': 3,
-		    'slidesToScroll': 3,
-		    'infinite': true
-		  }
-		},
-		{
-		  'breakpoint': 600,
-		  'settings': {
-		    'slidesToShow': 2,
-		    'slidesToScroll': 2
-		  }
-		},
-		{
-		  'breakpoint': 480,
-		  'settings': {
-		    'slidesToShow': 1,
-		    'slidesToScroll': 1
-		  }
-		}
-	]
+const breakpoint = [
+  {
+    'breakpoint': 1024,
+    'settings': {
+      'slidesToShow': 3,
+      'slidesToScroll': 3,
+      'infinite': true
+    }
+  },
+  {
+    'breakpoint': 600,
+    'settings': {
+      'slidesToShow': 2,
+      'slidesToScroll': 2
+    }
+  },
+  {
+    'breakpoint': 480,
+    'settings': {
+      'slidesToShow': 1,
+      'slidesToScroll': 1
+    }
+  }
+]
+
+export default Controller.extend({
+  breakpoints
 });
 ```
 
 ### Customization
-This widget supports the full range of slick-slider configuration options. The full list with descriptions can be found at the slick-slider homepage: http://kenwheeler.github.io/slick/
+This widget supports the full range of slick-slider configuration options. The full list with descriptions can be found at the [slick-slider homepage](http://kenwheeler.github.io/slick/).
 
 * accessibility
 * adaptiveHeight
