@@ -9,7 +9,10 @@
     "carousel",
     "responsive"
   ],
-  "repository": "https://github.com/surkus/ember-cli-slick",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com/surkus/ember-cli-slick"
+  },
   "license": "MIT",
   "author": {
     "name": "Surkus Engineering",
