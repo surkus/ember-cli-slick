@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import layout from '../templates/components/ember-cli-slick';
+import layout from '../templates/components/slick-slider';
 import { scheduleOnce } from '@ember/runloop';
 
 const responsive = [];
