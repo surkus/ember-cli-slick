@@ -1,11 +1,9 @@
 import Component from '@ember/component';
-import layout from '../templates/components/slick-slider';
 import { scheduleOnce } from '@ember/runloop';
 
 const responsive = [];
 
 export default Component.extend({
-  layout,
   responsive,
   accessibility: true,
   adaptiveHeight: true,
@@ -64,7 +62,7 @@ export default Component.extend({
       this.slickInit(this.$()[0]);
     });
 
-    this.$().slick({
+    let slick = this.$().slick({
       accessibility    : this.get('accessibility'),
       adaptiveHeight   : this.get('adaptiveHeight'),
       autoplay         : this.get('autoplay'),
@@ -139,5 +137,7 @@ export default Component.extend({
     .on('lazyLoadError', ($event, slick, image, imageSource) => {
       this.lazyLoadError(slick, image, imageSource);
     });
+
+    this.set('slick', slick)
   }
 });
