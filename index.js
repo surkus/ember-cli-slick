@@ -16,15 +16,11 @@ module.exports = {
     let vendorPath = `vendor/${this.name}`;
     let host = this._findHost();
 
-    host.import({
-      development: path.join(vendorPath, 'slick.js'),
-      production: path.join(vendorPath, 'slick.min.js'),
-    });
+    host.import(path.join(vendorPath, 'slick.js'));
   },
 
   treeForVendor() {
-    let slickPath = path.join(this.resolvePackagePath('slick-carousel'), 'slick');
-    let slickJs = fastbootTransform(new Funnel(slickPath, {
+    let slickJs = fastbootTransform(new Funnel(this.slickPath(), {
       files: ['slick.js', 'slick.min.js'],
       destDir: this.name
     }));
@@ -33,7 +29,8 @@ module.exports = {
   },
 
   treeForPublic() {
-    let slickPath = path.join(this.resolvePackagePath('slick-carousel'), 'slick');
+    let slickPath = this.slickPath();
+
     const imagesDir = new Funnel(slickPath, {
       include: ['*.gif'],
       destDir: 'assets'
@@ -52,7 +49,7 @@ module.exports = {
     let host = this._findHost();
 
     if (host.project.findAddonByName('ember-cli-sass')) {
-      styleTrees.push(new Funnel(path.join(this.resolvePackagePath('slick-carousel'), 'slick'), {
+      styleTrees.push(new Funnel(this.slickPath(), {
         include: ['**/*.scss'],
         destDir: this.name
       }));
@@ -63,6 +60,10 @@ module.exports = {
     }
 
     return mergeTrees(styleTrees, { overwrite: true });
+  },
+
+  slickPath() {
+    return path.join(this.resolvePackagePath('slick-carousel'), 'slick');
   },
 
   resolvePackagePath(packageName) {
