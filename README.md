@@ -16,6 +16,13 @@ From inside your ember-cli project, run the following:
 ember install @surkus/ember-cli-slick
 ```
 
+Add css to your dot sass or scss file.
+
+```sass
+  @import @surkus/ember-cli-slick/slick
+  @import @surkus/ember-cli-slick/slick-theme
+```
+
 ### slick-slider
 
 ```hbs
