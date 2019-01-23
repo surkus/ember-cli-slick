@@ -23,7 +23,7 @@ Add css to your dot sass or scss file.
   @import @surkus/ember-cli-slick/slick-theme
 ```
 
-### slick-slider
+### slick-slider Component
 
 ```hbs
 {{#slick-slider autoplay=true arrows=false}}
@@ -59,7 +59,7 @@ lazyLoadError
 {{/slick-slider}}
 ```
 
-####Init Event
+### Init Event
 A `slickInit` event may be bound from your template. This event is triggered after Ember's internal didInsertElement with a DOM reference to the newly created widget allowing direct manipulation of the DOM elements after creation.
 
 ```hbs
