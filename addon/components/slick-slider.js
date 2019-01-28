@@ -128,7 +128,7 @@ export default Component.extend({
       this.setPosition(slick);
     })
     .on('swipe', ($event, slick, direction) => {
-      this.swipe(slick, direction);
+      this.swiped(slick, direction);
     })
     .on('destroy', ($event, slick) => {
       this.destroy(slick);
